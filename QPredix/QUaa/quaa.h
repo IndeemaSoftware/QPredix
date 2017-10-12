@@ -1,3 +1,14 @@
+/***************************************************************************
+ *                                                                         *
+ *   This Predix services API was created by by Indeema Software Inc.      *
+ *   QPredix SDK is under MIT license so you are free to use it.           *
+ *   https://indeema.com                                                   *
+ *                                                                         *
+ *   In case if you have any issues or comments, please conntact us:       *
+ *   support@indeema.com                                                   *
+ *                                                                         *
+ ***************************************************************************/
+
 #ifndef QUAA_H
 #define QUAA_H
 
@@ -53,11 +64,11 @@ private:
     void startRefreshTimer();
 
 signals:
-    void loginSucced(QUaa*);
+    void loginSucceed(QUaa*);
 
 private slots:
     void refreshToken();
-    void loginSucced(QUaaSessionInfo);
+    void loginSucceed(QUaaSessionInfo);
 
 private:
     QUaaUserInfo mUaaUserInfo;

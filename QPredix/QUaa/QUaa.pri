@@ -4,6 +4,8 @@
 #
 #-------------------------------------------------
 
+PRECOMPILED_HEADER = $$PWD/../QPredixCode/pch.h
+
 SOURCES +=  $$PWD/quaa.cpp \
             $$PWD/quaainfo.cpp\
             $$PWD/quaauserinfo.cpp \

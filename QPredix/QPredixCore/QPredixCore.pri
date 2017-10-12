@@ -4,6 +4,8 @@
 #
 #-------------------------------------------------
 
+PRECOMPILED_HEADER = $$PWD/pch.h
+
 SOURCES += $$PWD/qpredixcore.cpp
 
 HEADERS +=  $$PWD/qpredixcore.h\

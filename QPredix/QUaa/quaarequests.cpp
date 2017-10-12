@@ -83,7 +83,7 @@ void QUaaRequests::handleResponse(QNetworkReply *reply)
         if (QString(QUAA_CMD_AUTH).contains(getCommand(reply))) {
             QUaaSessionInfo lSessionInfo = QUaaParser::parseUaaLoginResponse(lResponceData);
 
-            emit loginSucced(lSessionInfo);
+            emit loginSucceed(lSessionInfo);
         }
     } else {
         qDebug() << "request failed: " << reply;

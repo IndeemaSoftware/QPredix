@@ -15,7 +15,7 @@ QUaa::QUaa(QUaaInfo info, QObject *parent) : QObject(parent)
     connect(mRefreshTokenTimer, SIGNAL(timeout()), this, SLOT(refreshToken()));
 
     mRequest = new QUaaRequests(mUaaInfo.uaaUrl(), mUaaInfo.base64ClientCredential());
-    connect(mRequest, SIGNAL(loginSucced(QUaaSessionInfo)), this, SLOT(loginSucced(QUaaSessionInfo)));
+    connect(mRequest, SIGNAL(loginSucceed(QUaaSessionInfo)), this, SLOT(loginSucceed(QUaaSessionInfo)));
 }
 
 QUaa::~QUaa()
@@ -80,7 +80,7 @@ void QUaa::refreshToken()
     mRequest->refreshToken(mUserSessionInfo.refreshToken());
 }
 
-void QUaa::loginSucced(QUaaSessionInfo sessionInfo)
+void QUaa::loginSucceed(QUaaSessionInfo sessionInfo)
 {
     qDebug() << __FUNCTION__;
     if (mUserSessionInfo.token().isEmpty()) {
@@ -90,7 +90,7 @@ void QUaa::loginSucced(QUaaSessionInfo sessionInfo)
     } else {
         mClientSessionInfo = sessionInfo;//saving client session details
 
-        emit loginSucced(this); //only after we have client credentials signal is emmited
+        emit loginSucceed(this); //only after we have client credentials signal is emmited
     }
 }
 
