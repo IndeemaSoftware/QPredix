@@ -47,7 +47,7 @@ In this section, we only consider bugs and ignore any questions relating to the 
 
 - For additional assistance with your project - please contact us at **support@indeema.com** and specify **QPredix** in the subject line.
 
-- You can also follow our news at [@IndeemaSoftware](https://twitter.com/IndeemaSoftware) or on our [blog] (https://indeema.com/blog)
+- You can also follow our news at [@IndeemaSoftware](https://twitter.com/IndeemaSoftware) or on our [blog](https://indeema.com/blog).
 
 - For further questions on cooperation, simply email us at **support@indeema.com**.
 
