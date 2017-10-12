@@ -1,5 +1,7 @@
 #include "quaasessioninfo.h"
 
+#include "../QPredixCore/qpredixcore.h"
+
 QUaaSessionInfo::QUaaSessionInfo()
 {
 

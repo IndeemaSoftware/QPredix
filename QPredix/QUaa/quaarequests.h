@@ -30,6 +30,7 @@ public:
 
 signals:
     void loginSucceed(QUaaSessionInfo);
+    void loginFailed(QString);
 
 protected slots:
     void authenticationRequired(QNetworkReply *reply, QAuthenticator *authenticator);

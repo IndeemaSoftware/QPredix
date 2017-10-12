@@ -21,7 +21,7 @@ MainWindow::MainWindow(QWidget *parent) :
     lUser.setPassword("user password");
 
     mUaa = new QUaa(lInfo);
-    connect(mUaa, SIGNAL(loginSucced(QUaa*)), this, SLOT(loginSucced()));
+    connect(mUaa, SIGNAL(loginSucceed(QUaa*)), this, SLOT(loginSucced()));
     mUaa->loginWithCredentials(lUser);
 }
 

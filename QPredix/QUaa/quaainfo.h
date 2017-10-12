@@ -54,6 +54,9 @@ public:
     void setBase64ClientCredential(const QString &base64ClientCredential);
 
 private:
+    void checkCredentials();
+
+private:
     QString mUaaUrl;
     QString mBase64ClientCredential;
 };

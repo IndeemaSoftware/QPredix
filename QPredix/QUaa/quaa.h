@@ -65,6 +65,7 @@ private:
 
 signals:
     void loginSucceed(QUaa*);
+    void loginFailed(QString);
 
 private slots:
     void refreshToken();

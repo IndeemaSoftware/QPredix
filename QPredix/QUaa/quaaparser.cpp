@@ -35,7 +35,6 @@ QUaaSessionInfo QUaaParser::parseUaaLoginResponse(QByteArray jsonData)
         }
         rSession.setScope(lScope);
         rSession.setJti(lJson.value(KEY_JTI).toString());
-
     } else {
         qDebug() << "Data received is not JSON Object";
     }

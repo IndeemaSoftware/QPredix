@@ -77,7 +77,7 @@ void QUaaRequests::sslErrors(QNetworkReply*reply, const QList<QSslError>&)
 void QUaaRequests::handleResponse(QNetworkReply *reply)
 {
     QByteArray lResponceData = reply->readAll();
-//    qDebug() << "Handle response: " << lResponceData;
+    qDebug() << "Handle response: " << lResponceData;
 
     if (reply->error() == QNetworkReply::NoError) {
         if (QString(QUAA_CMD_AUTH).contains(getCommand(reply))) {
@@ -86,6 +86,10 @@ void QUaaRequests::handleResponse(QNetworkReply *reply)
             emit loginSucceed(lSessionInfo);
         }
     } else {
+        if (QString(QUAA_CMD_AUTH).contains(getCommand(reply))) {
+            emit loginFailed("Bad credentials");
+        }
+
         qDebug() << "request failed: " << reply;
     }
 }

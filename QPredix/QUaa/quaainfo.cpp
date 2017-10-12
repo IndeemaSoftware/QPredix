@@ -1,6 +1,12 @@
 #include "quaainfo.h"
 
-QUaaInfo::QUaaInfo()
+#include "../QPredixCore/qpredixcore.h"
+
+#include <QDebug>
+
+QUaaInfo::QUaaInfo() :
+    mUaaUrl{UNDEFINED},
+    mBase64ClientCredential{UNDEFINED}
 {
 }
 
@@ -13,6 +19,8 @@ QUaaInfo::QUaaInfo(QUaaInfo *info)
 bool QUaaInfo::isValid()
 {
     bool rIsValid = true;
+
+    checkCredentials();
 
     if (mBase64ClientCredential.isEmpty()) {
         rIsValid = false;
@@ -43,4 +51,16 @@ QString QUaaInfo::base64ClientCredential() const
 void QUaaInfo::setBase64ClientCredential(const QString &base64ClientCredential)
 {
     mBase64ClientCredential = base64ClientCredential;
+}
+
+void QUaaInfo::checkCredentials()
+{
+    if (mBase64ClientCredential == UNDEFINED) {
+        qDebug() << "Please set client credentials in format - base64 \"client_id:secret\"";
+    }
+
+    if (mUaaUrl == UNDEFINED) {
+        qDebug() << "Predix Uaa url is missing";
+    }
+
 }
