@@ -103,8 +103,6 @@ void QTimeSeriesRequests::handleResponse(QNetworkReply *reply)
     if (reply->error() == QNetworkReply::NoError) {
         if (QString(QTS_CMD_TAGS).contains(getCommand(reply))) {
             emit tagsReceived(lResponse);
-        } else if (QString(QTS_CMD_LATEST).contains(getCommand(reply))) {
-            emit latestDatapointsReceived(lResponse);
         } else if (QString(QTS_CMD_DATAPOINTS).contains(getCommand(reply))) {
             switch(mRequestType) {
             case QTimeSeriesRequestsTypeCustom:{
@@ -120,6 +118,8 @@ void QTimeSeriesRequests::handleResponse(QNetworkReply *reply)
             }
                 break;
             }
+        } else if (QString(QTS_CMD_LATEST).contains(getCommand(reply))) {
+            emit latestDatapointsReceived(lResponse);
         }
     } else {
         qDebug() << reply->error();

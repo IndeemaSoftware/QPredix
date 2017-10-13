@@ -18,6 +18,9 @@
 #define QTS_CMD_TAGS "/tags"
 
 #define TS_KEY_RESULTS "results"
+#define TS_KEY_TAGS "tags"
+#define TS_KEY_VALUES "values"
+
 #define TS_WEBSOCKET_URL QStringLiteral("wss://gateway-predix-data-services.run.aws-usw02-pr.ice.predix.io/v1/stream/messages")
 #define TS_WEBSOCKET_ORIGIN QStringLiteral("http://localhost")
 
