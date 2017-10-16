@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-PRECOMPILED_HEADER = $$PWD/../QPredixCode/pch.h
+PRECOMPILED_HEADER = $$PWD/../QPredixCore/pch.h
 
 SOURCES +=  $$PWD/qtimeseries.cpp\
             $$PWD/qtimeseriesrequests.cpp\
