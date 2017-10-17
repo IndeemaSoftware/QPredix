@@ -77,5 +77,5 @@ void MainWindow::loginSucced()
 //    mTimeSeries->getFromToDatapoints(lList, "1152112200000", "2052112200000");
 //    mTimeSeries->openSocket();
 
-    mTimeSeries->sendData("123", "HELLO");
+    mTimeSeries->sendData("123", "1");
 }

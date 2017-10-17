@@ -31,7 +31,7 @@ public:
     void getLimitedDatapoints(QStringList tags, int count);
     void getFromToDatapoints(QStringList tags, QString from, QString to);
 
-    void sendData(QString tagName, QString data);
+    void sendData(QString tagName, QString data, QString attributes=nullptr);
     void openSocket();
 
     QString zoneID() const;

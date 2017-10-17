@@ -144,25 +144,29 @@ QByteArray QTimeSeriesParser::formDatapointsJson(QString name, QList<QTimeSeries
     return rTags;
 }
 
-QByteArray QTimeSeriesParser::formDatapointsJson(QString name, QString data)
+QByteArray QTimeSeriesParser::formDatapointsJson(QString name, QString data, QString attributes)
 {
 //    if (timeStamp.isEmpty()) {
-    QString lTimeStamp = "1496584014807";//QString::number(QDateTime::currentMSecsSinceEpoch());
+    QString lTimeStamp = QString::number(QDateTime::currentMSecsSinceEpoch());
 //    }
 
-    QByteArray rTags("{ \"messageId\" :");
-    rTags.append(lTimeStamp).append(",");
+    QByteArray rTags("{ \"messageId\" :\"");
+    rTags.append(lTimeStamp).append("\",");
     rTags.append("\"body\" : [ {");
 
     rTags.append("\"name\" : \"").append(name).append("\",");
-    rTags.append("\"datapoints\" : [");
+    rTags.append("\"datapoints\" : [[\"");
 
-    rTags.append("1496584014807,\"");
-    rTags.append("300").append("\",");
-    rTags.append("2");
-;
-    rTags.append("],");
-    rTags.append("\"attributes\" : {}");
+    rTags.append(lTimeStamp).append("\",\"");
+    rTags.append(data).append("\",");
+    rTags.append("\"3\"");
+
+    if (attributes == nullptr) {
+        rTags.append("]]");
+    } else {
+        rTags.append("]],");
+        rTags.append("\"attributes\" :").append(attributes);
+    }
 
     rTags.append("}]}");
     return rTags;

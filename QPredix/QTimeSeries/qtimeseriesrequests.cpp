@@ -133,9 +133,9 @@ void QTimeSeriesRequests::setUaa(QUaa *uaa)
     mUaa = uaa;
 }
 
-void QTimeSeriesRequests::sendData(QString name, QString data)
+void QTimeSeriesRequests::sendData(QString name, QString data, QString attributes)
 {
-    QByteArray lData = QTimeSeriesParser::formDatapointsJson(name, data);
+    QByteArray lData = QTimeSeriesParser::formDatapointsJson(name, data, attributes);
 
     qDebug() << lData;
 
@@ -146,7 +146,6 @@ void QTimeSeriesRequests::sendData(QString name, QString data)
 
 void QTimeSeriesRequests::openSocket(QString zoneId)
 {
-//    QNetworkRequest lRequest = request(QUrl(TS_WEBSOCKET_URL), zoneId);
     QNetworkRequest lRequest(QUrl(TS_WEBSOCKET_URL));
     lRequest.setRawHeader("Predix-Zone-Id", zoneId.toUtf8());
     lRequest.setRawHeader("Origin", TS_WEBSOCKET_ORIGIN.toUtf8());

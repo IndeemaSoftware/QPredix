@@ -30,7 +30,7 @@ public:
 
     static QByteArray formDatapointsJson(QString name, QList<QTimeSeriesDataPoint> datapoints);
 
-    static QByteArray formDatapointsJson(QString name, QString data);
+    static QByteArray formDatapointsJson(QString name, QString data, QString attributes=nullptr);
 
     static QStringList parseTagsResponse(QByteArray);
 };
