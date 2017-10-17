@@ -14,7 +14,6 @@ SOURCES +=  $$PWD/quaa.cpp \
             $$PWD/quaarequests.cpp
 
 HEADERS +=  $$PWD/quaa.h\
-            $$PWD/quaa_global.h \
             $$PWD/quaainfo.h \
             $$PWD/quaauserinfo.h \
             $$PWD/quaacommands.h \

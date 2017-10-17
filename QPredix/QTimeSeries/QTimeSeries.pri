@@ -13,7 +13,6 @@ SOURCES +=  $$PWD/qtimeseries.cpp\
             $$PWD/qtimeseriesdatapoint.cpp
 
 HEADERS +=  $$PWD/qtimeseries.h\
-            $$PWD/qtimeseries_global.h\
             $$PWD/qtimeseriesrequests.h\
             $$PWD/qtimeseriestag.h\
             $$PWD/qtimeseriesparser.h\

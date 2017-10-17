@@ -12,7 +12,6 @@
 #ifndef QUAA_H
 #define QUAA_H
 
-#include "quaa_global.h"
 #include "quaainfo.h"
 #include "quaauserinfo.h"
 #include "quaasessioninfo.h"
@@ -28,7 +27,7 @@ class QTimer;
 */
 
 
-class QUAASHARED_EXPORT QUaa : public QObject
+class QUaa : public QObject
 {
     Q_OBJECT
 public:

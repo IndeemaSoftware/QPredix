@@ -12,8 +12,6 @@
 #ifndef QPREDIXCORE_H
 #define QPREDIXCORE_H
 
-#include "qpredixcore_global.h"
-
 #include <QObject>
 #include <QNetworkRequest>
 #include <QSslError>
@@ -37,7 +35,7 @@ class QNetworkAccessManager;
     rtequest manager and url parsers to know request name.
 */
 
-class QPREDIXCORESHARED_EXPORT QPredixCore : public QObject
+class QPredixCore : public QObject
 {
     Q_OBJECT
 public:

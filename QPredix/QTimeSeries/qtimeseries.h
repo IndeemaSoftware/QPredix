@@ -11,15 +11,13 @@
  *                                                                         *
  ***************************************************************************/
 
-#include "qtimeseries_global.h"
-
 #include <QObject>
 #include <QStringList>
 
 class QUaa;
 class QTimeSeriesRequests;
 
-class QTIMESERIESSHARED_EXPORT QTimeSeries : public QObject
+class QTimeSeries : public QObject
 {
     Q_OBJECT
 
