@@ -133,9 +133,9 @@ void QTimeSeriesRequests::setUaa(QUaa *uaa)
     mUaa = uaa;
 }
 
-void QTimeSeriesRequests::sendData(QString name, QString data, QString attributes)
+void QTimeSeriesRequests::sendData(QString name, QString data, QString quality,QString attributes)
 {
-    QByteArray lData = QTimeSeriesParser::formDatapointsJson(name, data, attributes);
+    QByteArray lData = QTimeSeriesParser::formDatapointsJson(name, data, quality, attributes);
 
     qDebug() << lData;
 

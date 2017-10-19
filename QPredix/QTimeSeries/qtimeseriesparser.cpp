@@ -144,7 +144,7 @@ QByteArray QTimeSeriesParser::formDatapointsJson(QString name, QList<QTimeSeries
     return rTags;
 }
 
-QByteArray QTimeSeriesParser::formDatapointsJson(QString name, QString data, QString attributes)
+QByteArray QTimeSeriesParser::formDatapointsJson(QString name, QString data, QString quality, QString attributes)
 {
 //    if (timeStamp.isEmpty()) {
     QString lTimeStamp = QString::number(QDateTime::currentMSecsSinceEpoch());
@@ -158,13 +158,13 @@ QByteArray QTimeSeriesParser::formDatapointsJson(QString name, QString data, QSt
     rTags.append("\"datapoints\" : [[\"");
 
     rTags.append(lTimeStamp).append("\",\"");
-    rTags.append(data).append("\",");
-    rTags.append("\"3\"");
+    rTags.append(data).append("\", \"");
+    rTags.append(quality);
 
     if (attributes == nullptr) {
-        rTags.append("]]");
+        rTags.append("\"]]");
     } else {
-        rTags.append("]],");
+        rTags.append("\"]],");
         rTags.append("\"attributes\" :").append(attributes);
     }
 

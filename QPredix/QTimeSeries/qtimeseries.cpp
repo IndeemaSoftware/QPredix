@@ -48,10 +48,10 @@ void QTimeSeries::getFromToDatapoints(QStringList tags, QString from, QString to
     mRequest->getFromToDatapoints(tags, from, to, mZoneID);
 }
 
-void QTimeSeries::sendData(QString tagName, QString data, QString attributes)
+void QTimeSeries::sendData(QString tagName, QString data, QString quality, QString attributes)
 {
     mRequest->openSocket(mZoneID);
-    mRequest->sendData(tagName, data, attributes);
+    mRequest->sendData(tagName, data, quality, attributes);
 }
 
 void QTimeSeries::openSocket()

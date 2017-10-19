@@ -46,7 +46,7 @@ public:
 
     void setUaa(QUaa *uaa);
 
-    void sendData(QString name, QString data, QString attributes=nullptr);
+    void sendData(QString name, QString data, QString quality, QString attributes=nullptr);
 
     void openSocket(QString zoneId);
     void closeSocket();
