@@ -19,7 +19,13 @@ DEFINES += QT_DEPRECATED_WARNINGS
 win32 {
     LIBS += "../../QPredixSDK/QUaa.dll"
     LIBS += "../../QPredixSDK/QPredixCore.dll"
-    DLLDESTDIR +=../../QPredixSDK
+    DLLDESTDIR += ../../QPredixSDK
+}
+
+mac {
+    LIBS += "../../QPredixSDK/libQUaa.dylib"
+    LIBS += "../../QPredixSDK/libQPredixCore.dylib"
+    DESTDIR += ../../QPredixSDK
 }
 
 SOURCES += qtimeseries.cpp \

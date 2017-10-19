@@ -21,6 +21,10 @@ win32 {
     DLLDESTDIR += ../../QPredixSDK
 }
 
+mac {
+    DESTDIR += ../../QPredixSDK
+}
+
 SOURCES += qpredixcore.cpp
 
 HEADERS += qpredixcore.h

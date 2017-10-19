@@ -4,6 +4,9 @@
 This is Qt/C++ SDK for Predix Ge services API (https://www.predix.io/) developed by [Indeema Software Inc.](https://indeema.com/). It works for MacOS, Linux and Windows operation systems.
 
 ## Documentation
+## Minimum requirements
+Qt 5.8
+
 ### How to start
 A simple example you can find in [QPredixSamples folder](https://github.com/IndeemaSoftware/QPredix/tree/master/QPredixSamples). 
 

@@ -21,6 +21,11 @@ win32 {
     DLLDESTDIR +=../../QPredixSDK
 }
 
+mac {
+    LIBS += "../../QPredixSDK/libQPredixCore.dylib"
+    DESTDIR += ../../QPredixSDK
+}
+
 SOURCES += quaa.cpp \
     quaainfo.cpp \
     quaauserinfo.cpp \
