@@ -24,8 +24,3 @@ QTimeSeries.depends = QPredixCore
 DEFINES += QT_DEPRECATED_WARNINGS
 
 HEADERS += qpredix.h
-
-unix {
-    target.path = /usr/lib
-    INSTALLS += target
-}
