@@ -13,7 +13,6 @@
 #define QTIMESERIESPARSER_H
 
 #include "qtimeseriestag.h"
-#include "qtimeseriesdatapoint.h"
 
 #include <QList>
 #include <QStringList>
@@ -27,8 +26,6 @@ public:
     static QByteArray formLatestDatapointsJson(QStringList);
     static QByteArray formLimitedDatapointsJson(QStringList, int count);
     static QByteArray formFromToDatapointsJson(QStringList, QString from, QString to);
-
-    static QByteArray formDatapointsJson(QString name, QList<QTimeSeriesDataPoint> datapoints);
 
     static QByteArray formDatapointsJson(QString name, QString data, QString quality, QString attributes=nullptr);
 

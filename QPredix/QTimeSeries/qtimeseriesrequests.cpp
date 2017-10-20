@@ -180,12 +180,6 @@ void QTimeSeriesRequests::disconnected()
     qDebug() << __FUNCTION__;
 }
 
-void QTimeSeriesRequests::pong(quint64 elapsedTime, const QByteArray &payload)
-{
-    qDebug() << __FUNCTION__;
-    qDebug() << payload;
-}
-
 void QTimeSeriesRequests::textMessageReceived(const QString &message)
 {
     qDebug() << __FUNCTION__;

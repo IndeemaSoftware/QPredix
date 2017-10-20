@@ -64,7 +64,6 @@ signals:
 protected slots:
     void connected();
     void disconnected();
-    void pong(quint64 elapsedTime, const QByteArray &payload);
     void textMessageReceived(const QString &message);
     void error(QAbstractSocket::SocketError error);
     void authenticationRequired(QNetworkReply *reply, QAuthenticator *authenticator);

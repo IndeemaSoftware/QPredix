@@ -54,11 +54,6 @@ void QTimeSeries::sendData(QString tagName, QString data, QString quality, QStri
     mRequest->sendData(tagName, data, quality, attributes);
 }
 
-void QTimeSeries::openSocket()
-{
-    mRequest->openSocket(mZoneID);
-}
-
 QString QTimeSeries::zoneID() const
 {
     return mZoneID;

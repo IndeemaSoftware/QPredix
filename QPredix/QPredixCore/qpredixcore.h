@@ -31,8 +31,8 @@ class QNetworkAccessManager;
 /*! \class QPredixCore
     \brief Basic class for any Predix class that uses Uaa and communicates with Predix APIs
 
-    To start using Uaa QPredixCore can save you time as it contains methods for request formation QNetworkRequest request(QUrl url);
-    rtequest manager and url parsers to know request name.
+    \details To start using Uaa QPredixCore can save you time as it contains methods for request formation QNetworkRequest request(QUrl url);
+    request manager and url parsers to know request name.
 */
 
 class QPredixCore : public QObject

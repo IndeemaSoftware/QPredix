@@ -135,14 +135,6 @@ QByteArray QTimeSeriesParser::formFromToDatapointsJson(QStringList tags, QString
     return rTags;
 }
 
-QByteArray QTimeSeriesParser::formDatapointsJson(QString name, QList<QTimeSeriesDataPoint> datapoints)
-{
-        QByteArray rTags("{ messageId");
-    //                "messageId": timestamp,
-    //            "body": self._queue
-
-    return rTags;
-}
 
 QByteArray QTimeSeriesParser::formDatapointsJson(QString name, QString data, QString quality, QString attributes)
 {

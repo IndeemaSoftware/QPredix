@@ -9,12 +9,10 @@ PRECOMPILED_HEADER = $$PWD/../QPredixCore/pch.h
 SOURCES +=  $$PWD/qtimeseries.cpp\
             $$PWD/qtimeseriesrequests.cpp\
             $$PWD/qtimeseriestag.cpp\
-            $$PWD/qtimeseriesparser.cpp \
-            $$PWD/qtimeseriesdatapoint.cpp
+            $$PWD/qtimeseriesparser.cpp
 
 HEADERS +=  $$PWD/qtimeseries.h\
             $$PWD/qtimeseriesrequests.h\
             $$PWD/qtimeseriestag.h\
             $$PWD/qtimeseriesparser.h\
-            $$PWD/qtimeseriescommands.h \
-            $$PWD/qtimeseriesdatapoint.h
+            $$PWD/qtimeseriescommands.h

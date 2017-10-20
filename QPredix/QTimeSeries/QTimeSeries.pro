@@ -31,15 +31,13 @@ mac {
 SOURCES += qtimeseries.cpp \
     qtimeseriesrequests.cpp \
     qtimeseriestag.cpp \
-    qtimeseriesparser.cpp \
-    qtimeseriesdatapoint.cpp
+    qtimeseriesparser.cpp
 
 HEADERS += qtimeseries.h\
     qtimeseriesrequests.h \
     qtimeseriestag.h \
     qtimeseriesparser.h \
-    qtimeseriescommands.h \
-    qtimeseriesdatapoint.h
+    qtimeseriescommands.h
 
 unix {
     target.path = /usr/lib

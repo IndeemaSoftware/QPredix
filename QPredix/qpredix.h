@@ -32,7 +32,6 @@
 #include "QTimeSeries/qtimeseriestag.h"
 #include "QTimeSeries/qtimeseriesparser.h"
 #include "QTimeSeries/qtimeseriescommands.h"
-#include "QTimeSeries/qtimeseriesdatapoint.h"
 #include "QTimeSeries/qtimeseriestag.h"
 
 
