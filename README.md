@@ -38,8 +38,15 @@ After login is succeed you are able to start using TimeSeries service provided b
 
     QTimeSeries *mTimeSeries = new QTimeSeries(mUaa);
     mTimeSeries->setZoneID("Your zone ID");
+    
+Now ingest data to timeseries service:
+    
+    mTimeSeries->sendData("TEST1", "0", "0", QString("{\"vector\": \"x\"}"));
+    
+First parameter is tag name, the second is value, the third is quality and the third is custom attributes.
+There is more simple way to ingest data iwth only tag and value with default quality 3 and without attributes:
 
-
+    mTimeSeries->sendData("TEST1", "0");
 
 ## Communication and Support
 If you encounter an issue or you have any comments or propositions with using the QPredix library then you can reach us in several different ways:
