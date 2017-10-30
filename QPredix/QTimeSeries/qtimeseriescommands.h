@@ -20,6 +20,13 @@
 #define TS_KEY_RESULTS "results"
 #define TS_KEY_TAGS "tags"
 #define TS_KEY_VALUES "values"
+#define TS_KEY_BODY "body"
+#define TS_KEY_MESSAGE_ID "messageId"
+#define TS_KEY_NAME "name"
+#define TS_KEY_DATAPOINTS "datapoints"
+#define TS_KEY_ATTRIBUTES "attributes"
+
+#define TS_DATA_FILE "datafile.qpd"
 
 #define TS_WEBSOCKET_URL QStringLiteral("wss://gateway-predix-data-services.run.aws-usw02-pr.ice.predix.io/v1/stream/messages")
 #define TS_WEBSOCKET_ORIGIN QStringLiteral("http://localhost")

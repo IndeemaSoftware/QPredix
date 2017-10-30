@@ -20,6 +20,7 @@
 
 class QUaa;
 class QWebSocket;
+class QFile;
 
 typedef enum {
     QTimeSeriesRequestsTypeNone = -1,
@@ -62,6 +63,7 @@ protected:
 
 private:
     void sendDataToSocket();
+    void storeDataToSend(QString data);
 
 signals:
     void tagsReceived(QByteArray);
@@ -85,6 +87,7 @@ private:
     QWebSocket *mWebSocket;
 
     QString mDataToSend;
+    QFile *mDataFile;
 };
 
 #endif // QTIMESERIESREQUESTS_H

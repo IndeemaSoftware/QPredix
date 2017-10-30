@@ -7,10 +7,13 @@
 #include <QDebug>
 #include <QJsonDocument>
 #include <QWebSocket>
+#include <QFile>
 
 QTimeSeriesRequests::QTimeSeriesRequests(QUaa *uaa, QPredixCore *parent) : QPredixCore(uaa->uaaInfo().uaaUrl(), uaa->uaaInfo().base64ClientCredential(), parent),
     mUaa{uaa},
-    mRequestType{QTimeSeriesRequestsTypeNone}
+    mRequestType{QTimeSeriesRequestsTypeNone},
+    mDataToSend{""},
+    mDataFile{new QFile(TS_DATA_FILE)}
 {
     setUrl(QTS_URL);
 
@@ -25,6 +28,12 @@ QTimeSeriesRequests::~QTimeSeriesRequests()
 {
     mWebSocket->close();
     delete mWebSocket;
+
+    if (mDataFile->isOpen()) {
+        mDataFile->close();
+    }
+
+    delete mDataFile;
 }
 
 void QTimeSeriesRequests::getAllTags(QString zoneId)
@@ -139,7 +148,7 @@ void QTimeSeriesRequests::sendData(QString name, QString data, QString quality,Q
 
     qDebug() << lData;
 
-    mDataToSend = QString().fromUtf8(lData);
+    storeDataToSend(QString().fromUtf8(lData));
 
     sendDataToSocket();
 }
@@ -149,7 +158,7 @@ void QTimeSeriesRequests::sendData(QJsonObject object)
     QJsonDocument lDocument;
     lDocument.setObject(object);
 
-    mDataToSend = lDocument.toJson();
+    storeDataToSend(lDocument.toJson());
 
     sendDataToSocket();
 }
@@ -186,6 +195,22 @@ void QTimeSeriesRequests::sendDataToSocket()
     if (mWebSocket->isValid() && !mDataToSend.isEmpty()) {
         mWebSocket->sendTextMessage(mDataToSend);
         mDataToSend = "";
+    }
+}
+
+void QTimeSeriesRequests::storeDataToSend(QString data)
+{
+    if (mDataToSend.isEmpty()) {
+        mDataToSend = data;
+    } else {
+        if (mDataFile->open(QIODevice::ReadWrite)) {
+            QString lStoredData = QString().fromUtf8(mDataFile->readAll());
+
+
+            mDataFile->close();
+        } else {
+            qDebug() << "Something went wrong while trying to open " << TS_DATA_FILE;
+        }
     }
 }
 

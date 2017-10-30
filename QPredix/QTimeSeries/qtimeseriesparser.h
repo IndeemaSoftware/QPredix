@@ -16,6 +16,7 @@
 
 #include <QList>
 #include <QStringList>
+#include <QJsonObject>
 
 class QTimeSeriesParser
 {
@@ -29,7 +30,14 @@ public:
 
     static QByteArray formDatapointsJson(QString name, QString data, QString quality, QString attributes=nullptr);
 
+    static QByteArray margeJsons(QString parent, QString child);
+    static QJsonObject margeJsons(QJsonObject parent, QJsonObject child);
+    static QJsonArray margeBodyJsons(QJsonArray parent, QJsonArray child);
+    static bool areAttibuteKeysEqual(QJsonObject parent, QJsonObject child);
+
     static QStringList parseTagsResponse(QByteArray);
+
+    static bool isJsonValid(QJsonObject json);
 };
 
 #endif // QTIMESERIESPARSER_H
