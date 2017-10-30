@@ -147,8 +147,6 @@ void QTimeSeriesRequests::sendData(QString name, QString data, QString quality,Q
     QByteArray lData = QTimeSeriesParser::formDatapointsJson(name, data, quality, attributes);    
 
     accumulateDataToSend(QString().fromUtf8(lData));
-
-//    sendDataToSocket();
 }
 
 void QTimeSeriesRequests::sendData(QJsonObject object)
@@ -157,8 +155,6 @@ void QTimeSeriesRequests::sendData(QJsonObject object)
     lDocument.setObject(object);
 
     accumulateDataToSend(lDocument.toJson());
-
-//    sendDataToSocket();
 }
 
 #define QSSLSOCKET_DEBUG

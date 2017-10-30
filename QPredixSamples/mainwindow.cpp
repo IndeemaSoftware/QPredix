@@ -4,81 +4,78 @@
 #include "../QPredix/qpredix.h"
 
 #include <QDebug>
-#include <QJsonDocument>
 
 MainWindow::MainWindow(QWidget *parent) :
-  QMainWindow(parent),
-  ui(new Ui::MainWindow),
-  mTimeSeries{nullptr}
+    QMainWindow(parent),
+    ui(new Ui::MainWindow),
+    mTimeSeries{nullptr}
 {
-  ui->setupUi(this);
+    ui->setupUi(this);
 
-  QUaaInfo lInfo;
-  lInfo.setUaaUrl("https://a3fe4c03-fa0b-4f78-bc33-67df00f5cdf5.predix-uaa.run.aws-usw02-pr.ice.predix.io");
-  lInfo.setBase64ClientCredential("bG9naW5fY2xpZW50X2lkOnF3ZXJ0eTEyMw==");
+    QUaaInfo lInfo;
+    lInfo.setUaaUrl("your UaaUrl taken from Predix Uaa service");
+    lInfo.setBase64ClientCredential("Your credenticals in base64 in format \"client_id:secret\"");
 
-  QUaaUserInfo lUser;
-  lUser.setLogin("app_user_1");
-  lUser.setPassword("qwerty123");
+    QUaaUserInfo lUser;
+    lUser.setLogin("user credentials");
+    lUser.setPassword("user password");
 
-  mUaa = new QUaa(lInfo);
-  connect(mUaa, SIGNAL(loginSucceed(QUaa*)), this, SLOT(loginSucced()));
-  mUaa->loginWithCredentials(lUser);
-
-  mTimeSeries = new QTimeSeries(mUaa);
-  mTimeSeries->setZoneID("5e5d076e-c8df-4340-a9b3-7e5c0a1386ef");
-
-  mTimeSeries->sendData("TEST1", "1", "1", QString("{\"vector\": \"y\"}"));
+    mUaa = new QUaa(lInfo);
+    connect(mUaa, SIGNAL(loginSucced(QUaa*)), this, SLOT(loginSucced()));
+    mUaa->loginWithCredentials(lUser);
 }
 
 MainWindow::~MainWindow()
 {
-  delete ui;
+    delete ui;
 
-  if (mTimeSeries != nullptr) {
-      delete mTimeSeries;
-  }
+    if (mTimeSeries != nullptr) {
+        delete mTimeSeries;
+    }
 
-  delete mUaa;
+    delete mUaa;
 }
 
 void MainWindow::loginSucced()
 {
-  qDebug() << __FUNCTION__;
-//    QStringList lAttributes;
-//    lAttributes.append("test");
+    qDebug() << __FUNCTION__;
+    mTimeSeries = new QTimeSeries(mUaa);
+    mTimeSeries->setZoneID("Your zone ID");
 
-//    QList<double> lQualities;
-//    lQualities.append(3);
+    //    QStringList lAttributes;
+    //    lAttributes.append("test");
 
-//    QList<double> lValues;
-//    lValues.append(36);
+    //    QList<double> lQualities;
+    //    lQualities.append(3);
 
-//    QTimeSeriesMeasurements lMes;
-//    lMes.setCondition("First");
-//    lMes.setValues(lValues);
+    //    QList<double> lValues;
+    //    lValues.append(36);
 
-//    QTimeSeriesTag lTag;
-//    lTag.setName("Test_sensor");
-//    lTag.setSuppressGroupByType(false);
-//    lTag.setAttributes(lAttributes);
-//    lTag.setQualities(lQualities);
-//    lTag.setMeasurements(lMes);
+    //    QTimeSeriesMeasurements lMes;
+    //    lMes.setCondition("First");
+    //    lMes.setValues(lValues);
 
-//    QList<QTimeSeriesTag> lTags;
-//    lTags.append(lTag);
+    //    QTimeSeriesTag lTag;
+    //    lTag.setName("Test_sensor");
+    //    lTag.setSuppressGroupByType(false);
+    //    lTag.setAttributes(lAttributes);
+    //    lTag.setQualities(lQualities);
+    //    lTag.setMeasurements(lMes);
 
-//    QStringList lList;
-//    lList.append("TEST");
+    //    QList<QTimeSeriesTag> lTags;
+    //    lTags.append(lTag);
 
-//    mTimeSeries->getTags();
-//    mTimeSeries->getLatestDatapoints(lList);
+    //    QStringList lList;
+    //    lList.append("TEST");
 
-//    mTimeSeries->sendCustomRequest("{start: 1y-ago,tags: [ {name: TEST,order: desc,limit: 3 } ] }");
+    //    mTimeSeries->getTags();
+    //    mTimeSeries->getLatestDatapoints(lList);
 
-//    mTimeSeries->getLimitedDatapoints(lList, 5);
-//    mTimeSeries->getFromToDatapoints(lList, "1152112200000", "2052112200000");
-//    mTimeSeries->openSocket();
+    //    mTimeSeries->sendCustomRequest("{start: 1y-ago,tags: [ {name: TEST,order: desc,limit: 3 } ] }");
 
-  mTimeSeries->sendData("TEST1", "2", "2", QString("{\"vector\": \"x\"}"));
+    //    mTimeSeries->getLimitedDatapoints(lList, 5);
+    //    mTimeSeries->getFromToDatapoints(lList, "1152112200000", "2052112200000");
+    //    mTimeSeries->openSocket();
+
+    mTimeSeries->sendData("123", "HELLO");
 }
