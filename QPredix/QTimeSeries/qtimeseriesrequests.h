@@ -63,7 +63,9 @@ protected:
 
 private:
     void sendDataToSocket();
-    void storeDataToSend(QString data);
+    void accumulateDataToSend(QString data);
+    void readStoredData();
+    void saveAccumulatedData();
 
 signals:
     void tagsReceived(QByteArray);

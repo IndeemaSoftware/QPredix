@@ -7,51 +7,68 @@
 #include <QDebug>
 
 QTimeSeries::QTimeSeries(QUaa *uaa, QObject *parent) : QObject(parent),
-    mUaa{uaa}
+    mUaa{uaa},
+    mRequest{nullptr}
 {
-    mRequest = new QTimeSeriesRequests(mUaa);
-    connect(mRequest, SIGNAL(tagsReceived(QByteArray)), this, SLOT(tagsReceived(QByteArray)));
-    connect(mRequest, SIGNAL(latestDatapointsReceived(QByteArray)), this, SIGNAL(latestDatapoints(QByteArray)));
-    connect(mRequest, SIGNAL(customRequestResponseReceived(QByteArray)), this, SIGNAL(customRequestResponse(QByteArray)));
-    connect(mRequest, SIGNAL(limitedDatapointsReceived(QByteArray)), this, SIGNAL(limitedDatapoints(QByteArray)));
-    connect(mRequest, SIGNAL(fromToDatapointsReceived(QByteArray)), this, SIGNAL(fromToDatapoints(QByteArray)));
+    if (uaa != nullptr) {
+        mRequest = new QTimeSeriesRequests(mUaa);
+        connect(mRequest, SIGNAL(tagsReceived(QByteArray)), this, SLOT(tagsReceived(QByteArray)));
+        connect(mRequest, SIGNAL(latestDatapointsReceived(QByteArray)), this, SIGNAL(latestDatapoints(QByteArray)));
+        connect(mRequest, SIGNAL(customRequestResponseReceived(QByteArray)), this, SIGNAL(customRequestResponse(QByteArray)));
+        connect(mRequest, SIGNAL(limitedDatapointsReceived(QByteArray)), this, SIGNAL(limitedDatapoints(QByteArray)));
+        connect(mRequest, SIGNAL(fromToDatapointsReceived(QByteArray)), this, SIGNAL(fromToDatapoints(QByteArray)));
+    }
 }
 
 QTimeSeries::~QTimeSeries()
 {
-    delete mRequest;
+    if (mRequest != nullptr) {
+        delete mRequest;
+    }
 }
 
 void QTimeSeries::sendCustomRequest(QString req)
 {
-    mRequest->sendCustomRequest(req, mZoneID);
+    if (mRequest != nullptr) {
+        mRequest->sendCustomRequest(req, mZoneID);
+    }
 }
 
 void QTimeSeries::getTags()
 {
-    mRequest->getAllTags(mZoneID);
+    if (mRequest != nullptr) {
+        mRequest->getAllTags(mZoneID);
+    }
 }
 
 void QTimeSeries::getLatestDatapoints(QStringList tags)
 {
     qDebug() << __FUNCTION__;
-    mRequest->getLatestDatapoints(tags, mZoneID);
+    if (mRequest != nullptr) {
+        mRequest->getLatestDatapoints(tags, mZoneID);
+    }
 }
 
 void QTimeSeries::getLimitedDatapoints(QStringList tags, int count)
 {
-    mRequest->getLimitedDatapoints(tags, count, mZoneID);
+    if (mRequest != nullptr) {
+        mRequest->getLimitedDatapoints(tags, count, mZoneID);
+    }
 }
 
 void QTimeSeries::getFromToDatapoints(QStringList tags, QString from, QString to)
 {
-    mRequest->getFromToDatapoints(tags, from, to, mZoneID);
+    if (mRequest != nullptr) {
+        mRequest->getFromToDatapoints(tags, from, to, mZoneID);
+    }
 }
 
 void QTimeSeries::sendData(QString tagName, QString data, QString quality, QString attributes)
 {
-    mRequest->openSocket(mZoneID);
-    mRequest->sendData(tagName, data, quality, attributes);
+    if (mRequest != nullptr) {
+        mRequest->openSocket(mZoneID);
+        mRequest->sendData(tagName, data, quality, attributes);
+    }
 }
 
 QString QTimeSeries::zoneID() const
@@ -67,8 +84,6 @@ void QTimeSeries::setZoneID(const QString &zoneID)
 void QTimeSeries::tagsReceived(QByteArray tags)
 {
     QStringList lList = QTimeSeriesParser::parseTagsResponse(tags);
-
-    qDebug() << "List: " << lList;
 
     emit tagsList(lList);
 }

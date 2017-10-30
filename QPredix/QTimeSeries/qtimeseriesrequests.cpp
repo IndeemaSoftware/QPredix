@@ -22,16 +22,16 @@ QTimeSeriesRequests::QTimeSeriesRequests(QUaa *uaa, QPredixCore *parent) : QPred
     connect(mWebSocket, SIGNAL(disconnected()), this, SLOT(disconnected()));
     connect(mWebSocket, SIGNAL(error(QAbstractSocket::SocketError)), this, SLOT(error(QAbstractSocket::SocketError)));
     connect(mWebSocket, SIGNAL(textMessageReceived(const QString &)), this, SLOT(textMessageReceived(const QString &)));
+
+    readStoredData();
 }
 
 QTimeSeriesRequests::~QTimeSeriesRequests()
 {
+    saveAccumulatedData();
+
     mWebSocket->close();
     delete mWebSocket;
-
-    if (mDataFile->isOpen()) {
-        mDataFile->close();
-    }
 
     delete mDataFile;
 }
@@ -146,11 +146,9 @@ void QTimeSeriesRequests::sendData(QString name, QString data, QString quality,Q
 {
     QByteArray lData = QTimeSeriesParser::formDatapointsJson(name, data, quality, attributes);    
 
-    qDebug() << lData;
+    accumulateDataToSend(QString().fromUtf8(lData));
 
-    storeDataToSend(QString().fromUtf8(lData));
-
-    sendDataToSocket();
+//    sendDataToSocket();
 }
 
 void QTimeSeriesRequests::sendData(QJsonObject object)
@@ -158,21 +156,25 @@ void QTimeSeriesRequests::sendData(QJsonObject object)
     QJsonDocument lDocument;
     lDocument.setObject(object);
 
-    storeDataToSend(lDocument.toJson());
+    accumulateDataToSend(lDocument.toJson());
 
-    sendDataToSocket();
+//    sendDataToSocket();
 }
 
 #define QSSLSOCKET_DEBUG
 
 void QTimeSeriesRequests::openSocket(QString zoneId)
 {
-    QNetworkRequest lRequest(QUrl(TS_WEBSOCKET_URL));
-    lRequest.setRawHeader("Predix-Zone-Id", zoneId.toUtf8());
-    lRequest.setRawHeader("Origin", TS_WEBSOCKET_ORIGIN.toUtf8());
-    lRequest.setRawHeader("Authorization", mUaa->clientSessionInfo().token().toUtf8());
+    if (!mUaa->clientSessionInfo().token().isEmpty()) {
+        QNetworkRequest lRequest(QUrl(TS_WEBSOCKET_URL));
+        lRequest.setRawHeader("Predix-Zone-Id", zoneId.toUtf8());
+        lRequest.setRawHeader("Origin", TS_WEBSOCKET_ORIGIN.toUtf8());
+        lRequest.setRawHeader("Authorization", mUaa->clientSessionInfo().token().toUtf8());
 
-    mWebSocket->open(lRequest);
+        mWebSocket->open(lRequest);
+    } else {
+        qDebug() << "Client was not authenticated. All data is stored locally.";
+    }
 }
 
 void QTimeSeriesRequests::closeSocket()
@@ -192,30 +194,75 @@ QNetworkRequest QTimeSeriesRequests::request(QUrl url, QString zoneId)
 
 void QTimeSeriesRequests::sendDataToSocket()
 {
+    qDebug() << "data to be sent: " << mDataToSend;
     if (mWebSocket->isValid() && !mDataToSend.isEmpty()) {
         mWebSocket->sendTextMessage(mDataToSend);
-        mDataToSend = "";
+    } else if (!mDataToSend.isEmpty()) {
+        qDebug() << "saving data is socket is closed";
+        saveAccumulatedData();
+    }
+
+    mDataToSend = "";
+}
+
+void QTimeSeriesRequests::accumulateDataToSend(QString data)
+{
+    if (!mDataToSend.isEmpty()) {
+        mDataToSend = QTimeSeriesParser::margeJsons(mDataToSend, data);
+    } else {
+        mDataToSend = data;
+        qDebug() << "There no data to send!";
     }
 }
 
-void QTimeSeriesRequests::storeDataToSend(QString data)
+void QTimeSeriesRequests::readStoredData()
 {
-    if (mDataToSend.isEmpty()) {
-        mDataToSend = data;
-    } else {
-        if (mDataFile->open(QIODevice::ReadWrite)) {
-            QString lStoredData = QString().fromUtf8(mDataFile->readAll());
+    if (mDataFile->isOpen()) {
+        mDataFile->close();
+        while (mDataFile->isOpen()) {}
+    }
 
+    if (mDataFile->open(QIODevice::ReadWrite)) {
+        QString lDataInFile = QString().fromUtf8(mDataFile->readAll());
+        if (!lDataInFile.isEmpty()) {
+            mDataToSend = QTimeSeriesParser::margeJsons(lDataInFile, mDataToSend);
+
+            mDataFile->write("", 0);
+            mDataFile->close();
+            qDebug() << "data read from file: " << mDataToSend;
+        } else {
+            qDebug() << "datastore is empty";
+        }
+    } else {
+        qDebug() << "Something went wrong while trying to open " << TS_DATA_FILE;
+    }
+}
+
+void QTimeSeriesRequests::saveAccumulatedData()
+{
+    if (mDataFile->isOpen()) {
+        mDataFile->close();
+        while (mDataFile->isOpen()) {}
+    }
+
+    if (!mDataToSend.isEmpty()) {
+        if (mDataFile->open(QIODevice::WriteOnly)) {
+            QTextStream lStream(mDataFile);
+            lStream << mDataToSend;
+            qDebug() << "Data saved locally: " << mDataToSend;
+
+            mDataToSend = "";
 
             mDataFile->close();
         } else {
-            qDebug() << "Something went wrong while trying to open " << TS_DATA_FILE;
+            qDebug() << "Something went wrong while trying to open." << TS_DATA_FILE;
         }
     }
 }
 
 void QTimeSeriesRequests::connected()
 {
+    readStoredData();
     sendDataToSocket();
 }
 
