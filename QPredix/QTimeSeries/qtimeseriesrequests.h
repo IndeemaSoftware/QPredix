@@ -16,6 +16,7 @@
 #include "qtimeseriestag.h"
 
 #include <QAbstractSocket>
+#include <QJsonObject>
 
 class QUaa;
 class QWebSocket;
@@ -46,13 +47,21 @@ public:
 
     void setUaa(QUaa *uaa);
 
+    //! You can use sendData method to send data to Predix.
+    /*!
+        \param body JSON body ofhttps://time-series-store-predix.run.aws-usw02-pr.ice.predix.io/datapoints query
+    */
     void sendData(QString name, QString data, QString quality, QString attributes=nullptr);
+    void sendData(QJsonObject object);
 
     void openSocket(QString zoneId);
     void closeSocket();
 
 protected:
     QNetworkRequest request(QUrl url, QString zoneId);
+
+private:
+    void sendDataToSocket();
 
 signals:
     void tagsReceived(QByteArray);

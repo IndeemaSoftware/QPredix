@@ -5,6 +5,7 @@
 
 #include <QNetworkReply>
 #include <QDebug>
+#include <QJsonDocument>
 #include <QWebSocket>
 
 QTimeSeriesRequests::QTimeSeriesRequests(QUaa *uaa, QPredixCore *parent) : QPredixCore(uaa->uaaInfo().uaaUrl(), uaa->uaaInfo().base64ClientCredential(), parent),
@@ -17,7 +18,6 @@ QTimeSeriesRequests::QTimeSeriesRequests(QUaa *uaa, QPredixCore *parent) : QPred
     connect(mWebSocket, SIGNAL(connected()), this, SLOT(connected()));
     connect(mWebSocket, SIGNAL(disconnected()), this, SLOT(disconnected()));
     connect(mWebSocket, SIGNAL(error(QAbstractSocket::SocketError)), this, SLOT(error(QAbstractSocket::SocketError)));
-    connect(mWebSocket, SIGNAL(pong(quint64, const QByteArray &)), this, SLOT(pong(quint64, const QByteArray &)));
     connect(mWebSocket, SIGNAL(textMessageReceived(const QString &)), this, SLOT(textMessageReceived(const QString &)));
 }
 
@@ -135,11 +135,23 @@ void QTimeSeriesRequests::setUaa(QUaa *uaa)
 
 void QTimeSeriesRequests::sendData(QString name, QString data, QString quality,QString attributes)
 {
-    QByteArray lData = QTimeSeriesParser::formDatapointsJson(name, data, quality, attributes);
+    QByteArray lData = QTimeSeriesParser::formDatapointsJson(name, data, quality, attributes);    
 
     qDebug() << lData;
 
     mDataToSend = QString().fromUtf8(lData);
+
+    sendDataToSocket();
+}
+
+void QTimeSeriesRequests::sendData(QJsonObject object)
+{
+    QJsonDocument lDocument;
+    lDocument.setObject(object);
+
+    mDataToSend = lDocument.toJson();
+
+    sendDataToSocket();
 }
 
 #define QSSLSOCKET_DEBUG
@@ -169,10 +181,17 @@ QNetworkRequest QTimeSeriesRequests::request(QUrl url, QString zoneId)
     return rRequest;
 }
 
+void QTimeSeriesRequests::sendDataToSocket()
+{
+    if (mWebSocket->isValid() && !mDataToSend.isEmpty()) {
+        mWebSocket->sendTextMessage(mDataToSend);
+        mDataToSend = "";
+    }
+}
+
 void QTimeSeriesRequests::connected()
 {
-    qDebug() << __FUNCTION__;
-    mWebSocket->sendTextMessage(mDataToSend);
+    sendDataToSocket();
 }
 
 void QTimeSeriesRequests::disconnected()
