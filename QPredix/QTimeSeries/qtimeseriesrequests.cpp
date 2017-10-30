@@ -227,7 +227,7 @@ void QTimeSeriesRequests::readStoredData()
         if (!lDataInFile.isEmpty()) {
             mDataToSend = QTimeSeriesParser::margeJsons(lDataInFile, mDataToSend);
 
-            mDataFile->write("", 0);
+            mDataFile->remove();
             mDataFile->close();
             qDebug() << "data read from file: " << mDataToSend;
         } else {

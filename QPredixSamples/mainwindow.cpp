@@ -4,6 +4,7 @@
 #include "../QPredix/qpredix.h"
 
 #include <QDebug>
+#include <QJsonDocument>
 
 MainWindow::MainWindow(QWidget *parent) :
   QMainWindow(parent),
@@ -23,6 +24,11 @@ MainWindow::MainWindow(QWidget *parent) :
   mUaa = new QUaa(lInfo);
   connect(mUaa, SIGNAL(loginSucceed(QUaa*)), this, SLOT(loginSucced()));
   mUaa->loginWithCredentials(lUser);
+
+  mTimeSeries = new QTimeSeries(mUaa);
+  mTimeSeries->setZoneID("5e5d076e-c8df-4340-a9b3-7e5c0a1386ef");
+
+  mTimeSeries->sendData("TEST1", "1", "1", QString("{\"vector\": \"y\"}"));
 }
 
 MainWindow::~MainWindow()
@@ -39,9 +45,6 @@ MainWindow::~MainWindow()
 void MainWindow::loginSucced()
 {
   qDebug() << __FUNCTION__;
-  mTimeSeries = new QTimeSeries(mUaa);
-  mTimeSeries->setZoneID("5e5d076e-c8df-4340-a9b3-7e5c0a1386ef");
-
 //    QStringList lAttributes;
 //    lAttributes.append("test");
 
@@ -77,5 +80,5 @@ void MainWindow::loginSucced()
 //    mTimeSeries->getFromToDatapoints(lList, "1152112200000", "2052112200000");
 //    mTimeSeries->openSocket();
 
-  mTimeSeries->sendData("TEST1", "0", "0", QString("{\"vector\": \"x\"}"));
+  mTimeSeries->sendData("TEST1", "2", "2", QString("{\"vector\": \"x\"}"));
 }
