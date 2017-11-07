@@ -53,6 +53,13 @@ public:
     */
     void setBase64ClientCredential(const QString &base64ClientCredential);
 
+    //! By using this method you set credentials to login as client and star using service
+    /*! later these credentials are encoded with base64 in format client_id:secret and storred in base64ClientCredential
+        \param login client login id
+        \param secret password used for client id
+    */
+    void setClientCredential(const QString &login, const QString secret);
+
 private:
     void checkCredentials();
 

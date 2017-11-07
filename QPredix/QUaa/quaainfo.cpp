@@ -53,6 +53,16 @@ void QUaaInfo::setBase64ClientCredential(const QString &base64ClientCredential)
     mBase64ClientCredential = base64ClientCredential;
 }
 
+void QUaaInfo::setClientCredential(const QString &login, const QString secret)
+{
+    QString lData;
+    lData.append(login);
+    lData.append(":");
+    lData.append(secret);
+
+    setBase64ClientCredential(lData.toUtf8().toBase64());
+}
+
 void QUaaInfo::checkCredentials()
 {
     if (mBase64ClientCredential == UNDEFINED) {
