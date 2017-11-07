@@ -21,7 +21,7 @@ MainWindow::MainWindow(QWidget *parent) :
     lUser.setPassword("user password");
 
     mUaa = new QUaa(lInfo);
-    connect(mUaa, SIGNAL(loginSucced(QUaa*)), this, SLOT(loginSucced()));
+    connect(mUaa, SIGNAL(loginSucceed(QUaa*)), this, SLOT(loginSucceed()));
     mUaa->loginWithCredentials(lUser);
 }
 
@@ -36,7 +36,7 @@ MainWindow::~MainWindow()
     delete mUaa;
 }
 
-void MainWindow::loginSucced()
+void MainWindow::loginSucceed()
 {
     qDebug() << __FUNCTION__;
     mTimeSeries = new QTimeSeries(mUaa);
@@ -77,5 +77,5 @@ void MainWindow::loginSucced()
     //    mTimeSeries->getFromToDatapoints(lList, "1152112200000", "2052112200000");
     //    mTimeSeries->openSocket();
 
-    mTimeSeries->sendData("123", "HELLO");
+    mTimeSeries->sendData("123", 1);
 }
