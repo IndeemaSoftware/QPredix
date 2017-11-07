@@ -18,7 +18,7 @@ to your project *.pro file. Then we need to initialize it with QUaaInfo:
 
     QUaaInfo lInfo;
     lInfo.setUaaUrl("your UaaUrl taken from Predix Uaa service");
-    lInfo.setClientCredential("Client id", "secret");
+    lInfo.setClientCredential("Client id", "secret");
 
 Then setup user with QUaaUserInfo:
 
