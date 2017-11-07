@@ -48,6 +48,8 @@ There is more simple way to ingest data iwth only tag and value with default qua
 
     mTimeSeries->sendData("TEST1", "0");
 
+**If device doesn't have connection to internet, all data is stored locally until connection will apear.**
+
 ## Communication and Support
 If you encounter an issue or you have any comments or propositions with using the QPredix library then you can reach us in several different ways:
 - Having difficulties with using QPredix you can write at [Stackoverflow](https://stackoverflow.com/) or at [Predix forum](https://forum.predix.io/index.html). Don't forget about specifing the **QPredix** tag. You will be helped by the community of this resource or our specialists will help you with an answer.
