@@ -63,7 +63,7 @@ void QTimeSeries::getFromToDatapoints(QStringList tags, QString from, QString to
     }
 }
 
-void QTimeSeries::sendData(QString tagName, QString data, QString quality, QString attributes)
+void QTimeSeries::sendData(QString tagName, QString data, QString quality, QJsonObject attributes)
 {
     if (mRequest != nullptr) {
         mRequest->openSocket(mZoneID);

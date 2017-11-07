@@ -136,32 +136,57 @@ QByteArray QTimeSeriesParser::formFromToDatapointsJson(QStringList tags, QString
 }
 
 
-QByteArray QTimeSeriesParser::formDatapointsJson(QString name, QString data, QString quality, QString attributes)
+//QByteArray QTimeSeriesParser::formDatapointsJson(QString name, QString data, QString quality, QString attributes)
+//{
+//    QString lTimeStamp = QString::number(QDateTime::currentMSecsSinceEpoch());
+
+//    QByteArray rTags("{ \"messageId\" :\"");
+//    rTags.append(lTimeStamp).append("\",");
+//    rTags.append("\"body\" : [ {");
+
+//    rTags.append("\"name\" : \"").append(name).append("\",");
+//    rTags.append("\"datapoints\" : [[\"");
+
+//    rTags.append(lTimeStamp).append("\",\"");
+//    rTags.append(data).append("\", \"");
+//    rTags.append(quality);
+
+//    if (attributes == nullptr) {
+//        rTags.append("\"]]");
+//    } else {
+//        rTags.append("\"]],");
+//        rTags.append("\"attributes\" :").append(attributes);
+//    }
+
+//    rTags.append("}]}");
+//    return rTags;
+//}
+
+QByteArray QTimeSeriesParser::formDatapointsJson(QString name, QString data, QString quality, QJsonObject attributes)
 {
-    //    if (timeStamp.isEmpty()) {
     QString lTimeStamp = QString::number(QDateTime::currentMSecsSinceEpoch());
-    //    }
+    QJsonObject lObject;
 
-    QByteArray rTags("{ \"messageId\" :\"");
-    rTags.append(lTimeStamp).append("\",");
-    rTags.append("\"body\" : [ {");
+    QJsonArray lBodyArray;
+    QJsonObject lBody;
+    QJsonArray lDataPointsArray;
 
-    rTags.append("\"name\" : \"").append(name).append("\",");
-    rTags.append("\"datapoints\" : [[\"");
+    lObject[TS_KEY_MESSAGE_ID] = lTimeStamp;
 
-    rTags.append(lTimeStamp).append("\",\"");
-    rTags.append(data).append("\", \"");
-    rTags.append(quality);
 
-    if (attributes == nullptr) {
-        rTags.append("\"]]");
-    } else {
-        rTags.append("\"]],");
-        rTags.append("\"attributes\" :").append(attributes);
-    }
+    lBody[TS_KEY_NAME] = name;
 
-    rTags.append("}]}");
-    return rTags;
+    lDataPointsArray.append(lTimeStamp);
+    lDataPointsArray.append(data);
+    lDataPointsArray.append(quality);
+    lBody[TS_KEY_DATAPOINTS] = lDataPointsArray;
+
+    lBodyArray.append(lBody);
+    lObject[TS_KEY_BODY] = lBodyArray;
+
+    lObject[TS_KEY_ATTRIBUTES] = attributes;
+
+    return QJsonDocument(lObject).toJson();
 }
 
 QByteArray QTimeSeriesParser::margeJsons(QString parent, QString child)

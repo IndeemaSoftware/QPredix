@@ -12,6 +12,7 @@
  ***************************************************************************/
 
 #include <QObject>
+#include <QJsonObject>
 #include <QStringList>
 
 class QUaa;
@@ -79,7 +80,7 @@ public:
         \param attributes json with attributes. For instance - {\"vector\": \"x\"}
         \code mTimeSeries->sendData("TEST1", "0", "0", QString("{\"vector\": \"x\"}"));
     */
-    void sendData(QString tagName, QString data, QString quality="3", QString attributes=nullptr);
+    void sendData(QString tagName, QString data, QString quality="3", QJsonObject attributes=QJsonObject());
 
     //! Zone id is unique id of Predix timeseries service.
     /*!
