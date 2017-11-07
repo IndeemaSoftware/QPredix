@@ -80,7 +80,9 @@ public:
         \param attributes json with attributes. For instance - {\"vector\": \"x\"}
         \code mTimeSeries->sendData("TEST1", "0", "0", QString("{\"vector\": \"x\"}"));
     */
-    void sendData(QString tagName, QString data, QString quality="3", QJsonObject attributes=QJsonObject());
+    void sendData(QString tagName, double data, double quality=3, QJsonObject attributes=QJsonObject());
+    void sendData(QString tagName, double data, double quality, QMap<QString, double> attributes);
+    void sendData(QString tagName, double data, double quality, QMap<QString, QString> attributes);
 
     //! Zone id is unique id of Predix timeseries service.
     /*!

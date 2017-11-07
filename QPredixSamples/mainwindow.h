@@ -19,7 +19,7 @@ public:
     ~MainWindow();
 
 private slots:
-    void loginSucced();
+    void loginSucceed();
 
 private:
     Ui::MainWindow *ui;

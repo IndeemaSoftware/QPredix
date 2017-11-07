@@ -5,6 +5,7 @@
 #include "../QUaa/quaa.h"
 
 #include <QDebug>
+#include <QMap>
 
 QTimeSeries::QTimeSeries(QUaa *uaa, QObject *parent) : QObject(parent),
     mUaa{uaa},
@@ -63,12 +64,32 @@ void QTimeSeries::getFromToDatapoints(QStringList tags, QString from, QString to
     }
 }
 
-void QTimeSeries::sendData(QString tagName, QString data, QString quality, QJsonObject attributes)
+void QTimeSeries::sendData(QString tagName, double data, double quality, QJsonObject attributes)
 {
     if (mRequest != nullptr) {
         mRequest->openSocket(mZoneID);
         mRequest->sendData(tagName, data, quality, attributes);
     }
+}
+
+void QTimeSeries::sendData(QString tagName, double data, double quality, QMap<QString, double> attributes)
+{
+    QJsonObject lObject;
+
+    for (QString key : attributes.keys()) {
+        lObject[key] = attributes.value(key);
+    }
+    sendData(tagName, data, quality, lObject);
+}
+
+void QTimeSeries::sendData(QString tagName, double data, double quality, QMap<QString, QString> attributes)
+{
+    QJsonObject lObject;
+
+    for (QString key : attributes.keys()) {
+        lObject[key] = attributes.value(key);
+    }
+    sendData(tagName, data, quality, lObject);
 }
 
 QString QTimeSeries::zoneID() const

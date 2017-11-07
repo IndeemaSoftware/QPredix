@@ -135,56 +135,33 @@ QByteArray QTimeSeriesParser::formFromToDatapointsJson(QStringList tags, QString
     return rTags;
 }
 
-
-//QByteArray QTimeSeriesParser::formDatapointsJson(QString name, QString data, QString quality, QString attributes)
-//{
-//    QString lTimeStamp = QString::number(QDateTime::currentMSecsSinceEpoch());
-
-//    QByteArray rTags("{ \"messageId\" :\"");
-//    rTags.append(lTimeStamp).append("\",");
-//    rTags.append("\"body\" : [ {");
-
-//    rTags.append("\"name\" : \"").append(name).append("\",");
-//    rTags.append("\"datapoints\" : [[\"");
-
-//    rTags.append(lTimeStamp).append("\",\"");
-//    rTags.append(data).append("\", \"");
-//    rTags.append(quality);
-
-//    if (attributes == nullptr) {
-//        rTags.append("\"]]");
-//    } else {
-//        rTags.append("\"]],");
-//        rTags.append("\"attributes\" :").append(attributes);
-//    }
-
-//    rTags.append("}]}");
-//    return rTags;
-//}
-
-QByteArray QTimeSeriesParser::formDatapointsJson(QString name, QString data, QString quality, QJsonObject attributes)
+QByteArray QTimeSeriesParser::formDatapointsJson(QString name, double data, double quality, QJsonObject attributes)
 {
-    QString lTimeStamp = QString::number(QDateTime::currentMSecsSinceEpoch());
+    qint64 lTimeStamp = QDateTime::currentMSecsSinceEpoch();
     QJsonObject lObject;
 
     QJsonArray lBodyArray;
     QJsonObject lBody;
     QJsonArray lDataPointsArray;
+    QJsonArray lData;
+
 
     lObject[TS_KEY_MESSAGE_ID] = lTimeStamp;
 
-
     lBody[TS_KEY_NAME] = name;
 
-    lDataPointsArray.append(lTimeStamp);
-    lDataPointsArray.append(data);
-    lDataPointsArray.append(quality);
+    lData.append(lTimeStamp);
+    lData.append(data);
+    lData.append(quality);
+    lDataPointsArray.append(lData);
     lBody[TS_KEY_DATAPOINTS] = lDataPointsArray;
+
+    if (!attributes.isEmpty()) {
+        lBody[TS_KEY_ATTRIBUTES] = attributes;
+    }
 
     lBodyArray.append(lBody);
     lObject[TS_KEY_BODY] = lBodyArray;
-
-    lObject[TS_KEY_ATTRIBUTES] = attributes;
 
     return QJsonDocument(lObject).toJson();
 }

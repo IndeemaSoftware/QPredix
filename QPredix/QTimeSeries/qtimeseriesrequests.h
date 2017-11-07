@@ -52,7 +52,7 @@ public:
     /*!
         \param body JSON body ofhttps://time-series-store-predix.run.aws-usw02-pr.ice.predix.io/datapoints query
     */
-    void sendData(QString name, QString data, QString quality, QJsonObject attributes=QJsonObject());
+    void sendData(QString name, double data, double quality, QJsonObject attributes=QJsonObject());
     void sendData(QJsonObject object);
 
     void openSocket(QString zoneId);

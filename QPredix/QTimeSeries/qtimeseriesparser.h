@@ -28,8 +28,7 @@ public:
     static QByteArray formLimitedDatapointsJson(QStringList, int count);
     static QByteArray formFromToDatapointsJson(QStringList, QString from, QString to);
 
-//    static QByteArray formDatapointsJson(QString name, QString data, QString quality, QString attributes=nullptr);
-    static QByteArray formDatapointsJson(QString name, QString data, QString quality, QJsonObject attributes=QJsonObject());
+    static QByteArray formDatapointsJson(QString name, double data, double quality, QJsonObject attributes=QJsonObject());
 
     static QByteArray margeJsons(QString parent, QString child);
     static QJsonObject margeJsons(QJsonObject parent, QJsonObject child);
