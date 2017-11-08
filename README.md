@@ -1,4 +1,4 @@
-![LOGO](https://github.com/IndeemaSoftware/QPredix/blob/Assets/indeema_logo.jpg?raw=true)
+![LOGO](https://github.com/IndeemaSoftware/QPredix/blob/Assets/sdk_3_transparent.png?raw=true)
 
 # QPredix
 This is Qt/C++ SDK for Predix Ge services API (https://www.predix.io/) developed by [Indeema Software Inc.](https://indeema.com/). It works for MacOS, Linux and Windows operation systems.
