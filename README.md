@@ -7,14 +7,14 @@ This is Qt/C++ SDK for Predix Ge services API (https://www.predix.io/) developed
 ## Minimum requirements
 Qt 5.8
 
-### Installing
+### Installing with qpm
 Just use qpm (https://www.qpm.io/) to install QPredix in your project.
-Run qpm install com.indeema.QPredix . in *.pro file include(vendor/com/indeema/QPredix/QPredix.pri)
+Run qpm install com.indeema.QPredix . in *.pro file include(vendor/Vendor.pri)
 
 ### How to start
 A simple example you can find in [QPredixSamples folder](https://github.com/IndeemaSoftware/QPredixSample). 
 
-Copy QPredix folder to your project and add 
+Or copy QPredix folder to your project and add 
 
   include(...QPredix.pri) 
 
