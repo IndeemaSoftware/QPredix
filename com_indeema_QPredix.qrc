@@ -1,0 +1,6 @@
+
+<RCC>
+    <qresource prefix="/com/indeema/QPredix">
+        <file>qmldir</file>
+    </qresource>
+</RCC>

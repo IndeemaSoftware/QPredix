@@ -1,0 +1,22 @@
+{
+  "name": "com.indeema.QPredix",
+  "description": "This is Qt/C++ SDK for Predix Ge services API (https://www.predix.io/) developed by Indeema Software Inc.. It works for MacOS, Linux and Windows operation systems.",
+  "author": {
+    "name": "Indeema Software Inc.",
+    "email": "ask@indeema.com"
+  },
+  "repository": {
+    "type": "GITHUB",
+    "url": "git@github.com:IndeemaSoftware/QPredix.git"
+  },
+  "version": {
+    "label": "0.9.0",
+    "revision": "",
+    "fingerprint": ""
+  },
+  "dependencies": [
+  ],
+  "license": "MIT",
+  "pri_filename": "QPredix.pri",
+  "webpage": “www.indeema.com”
+}
