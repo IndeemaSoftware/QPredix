@@ -43,7 +43,7 @@ Now ingest data to timeseries service:
     
     QMap<QString, QString> lAtt;
     lAtt.insert("vector", "x");
-    mTimeSeries->sendData("TEST1", 2, 3, lAtt));
+    mTimeSeries->sendData("TEST1", 2, 3, lAtt);
     
 First parameter is tag name, the second is value, the third is quality and the third is custom attributes.
 There is more simple way to ingest data iwth only tag and value with default quality 3 and without attributes:
@@ -67,3 +67,6 @@ In this section, we only consider bugs and ignore any questions relating to the 
 
 ## License
 **QPredix** works under the MIT license. For more information see [here](https://github.com/IndeemaSoftware/QPredix/blob/master/LICENSE).
+
+## Terms
+**QPredix** is released for testing purposes only. We make no guarantees with respect to its function. By using this software you agree that Indeema is not liable for any damage to your system and data.
