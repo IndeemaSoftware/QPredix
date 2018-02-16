@@ -16,7 +16,7 @@ A simple example you can find in [QPredixSamples folder](https://github.com/Inde
 
 Copy QPredix folder to your project and add 
 
-  include(QPredix.pri) 
+  include(...QPredix.pri) 
 
 to your project *.pro file. Then we need to initialize it with QUaaInfo:
 
