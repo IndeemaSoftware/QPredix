@@ -12,7 +12,7 @@ Just use qpm (https://www.qpm.io/) to install QPredix in your project.
 Run qpm install com.indeema.QPredix
 
 ### How to start
-A simple example you can find in [QPredixSamples folder](https://github.com/IndeemaSoftware/QPredix/tree/master/QPredixSamples). 
+A simple example you can find in [QPredixSamples folder](https://github.com/IndeemaSoftware/QPredixSample). 
 
 Copy QPredix folder to your project and add 
 
