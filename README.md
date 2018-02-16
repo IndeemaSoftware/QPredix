@@ -9,7 +9,7 @@ Qt 5.8
 
 ### Installing
 Just use qpm (https://www.qpm.io/) to install QPredix in your project.
-Run qpm install com.indeema.QPredix . in *.pro file include(vendor/IndeemaSoftware-QPredix-8d13632/QPredix.pri)
+Run qpm install com.indeema.QPredix . in *.pro file include(vendor/com/indeema/QPredix/QPredix.pri)
 
 ### How to start
 A simple example you can find in [QPredixSamples folder](https://github.com/IndeemaSoftware/QPredixSample). 
