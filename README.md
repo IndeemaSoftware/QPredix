@@ -7,7 +7,7 @@
 </p>
 
 <p align="center">
-  <b>This is Qt/C++ SDK for Predix Ge services API (https://www.predix.io/) developed by [Indeema Software Inc.](https://indeema.com/). </b></br>
+  <b>Qt/C++ SDK for Predix Ge services API (https://www.predix.io/) developed by [Indeema Software Inc.](https://indeema.com/). </b></br>
   <sub>It works for MacOS, Linux and Windows operation systems. <sub>
 </p>
 
