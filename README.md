@@ -1,5 +1,20 @@
 ![LOGO](https://github.com/IndeemaSoftware/QPredix/blob/Assets/sdk_3_transparent.png?raw=true)
 
+<h1 align="center"><img src="https://github.com/IndeemaSoftware/QPredix/blob/Assets/sdk_3_transparent.png" /><br> Driver.js</h1>
+
+<p align="center">
+  <a href="https://github.com/kamranahmedse/driver.js/blob/master/license">
+    <img src="https://img.shields.io/badge/License-MIT-yellow.svg" />
+  </a>
+</p>
+
+<p align="center">
+  <b>This is Qt/C++ SDK for Predix Ge services API (https://www.predix.io/) developed by [Indeema Software Inc.](https://indeema.com/). </b></br>
+  <sub>It works for MacOS, Linux and Windows operation systems. <sub>
+</p>
+
+<br />
+
 # QPredix
 This is Qt/C++ SDK for Predix Ge services API (https://www.predix.io/) developed by [Indeema Software Inc.](https://indeema.com/). It works for MacOS, Linux and Windows operation systems.
 
