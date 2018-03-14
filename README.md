@@ -1,4 +1,4 @@
-<h1 align="center"><img src="https://github.com/IndeemaSoftware/QPredix/blob/Assets/sdk_3_transparent.png"  width=100 height=100/><br> QPredix</h1>
+<h1 align="center"><img src="https://github.com/IndeemaSoftware/QPredix/blob/Assets/sdk_3_transparent.png"  width=200 height=200/><br> QPredix</h1>
 
 <p align="center">
   <a href="https://github.com/kamranahmedse/driver.js/blob/master/license">
