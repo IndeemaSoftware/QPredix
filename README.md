@@ -60,7 +60,7 @@ Now ingest data to timeseries service:
     mTimeSeries->sendData("TEST1", 2, 3, lAtt);
     
 First parameter is tag name, the second is value, the third is quality and the third is custom attributes.
-There is more simple way to ingest data iwth only tag and value with default quality 3 and without attributes:
+There is more simple way to ingest data with only tag and value with default quality 3 and without attributes:
 
     mTimeSeries->sendData("TEST1", "0");
 
