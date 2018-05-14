@@ -37,9 +37,11 @@ lInfo.setClientCredential("Client id", "secret");
 
 Then setup user with QUaaUserInfo:
 
-    QUaaUserInfo lUser;
-    lUser.setLogin("user credentials");
-    lUser.setPassword("user password");
+```cpp
+QUaaUserInfo lUser;
+lUser.setLogin("user credentials");
+lUser.setPassword("user password");
+```
     
 now you can start using Uaa service:
 
