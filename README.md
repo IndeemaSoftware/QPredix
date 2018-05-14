@@ -29,10 +29,11 @@ Or copy QPredix folder to your project and add
   include(...QPredix.pri) 
 
 to your project *.pro file. Then we need to initialize it with QUaaInfo:
-
+```c++
     QUaaInfo lInfo;
     lInfo.setUaaUrl("your UaaUrl taken from Predix Uaa service");
     lInfo.setClientCredential("Client id", "secret");
+```
 
 Then setup user with QUaaUserInfo:
 
