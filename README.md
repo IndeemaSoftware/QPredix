@@ -36,7 +36,6 @@ lInfo.setClientCredential("Client id", "secret");
 ```
 
 Then setup user with QUaaUserInfo:
-
 ```cpp
 QUaaUserInfo lUser;
 lUser.setLogin("user credentials");
@@ -57,15 +56,18 @@ After login is succeed you are able to start using TimeSeries service provided b
     mTimeSeries->setZoneID("Your zone ID");
     
 Now ingest data to timeseries service:
-    
-    QMap<QString, QString> lAtt;
-    lAtt.insert("vector", "x");
-    mTimeSeries->sendData("TEST1", 2, 3, lAtt);
-    
+```cpp    
+QMap<QString, QString> lAtt;
+lAtt.insert("vector", "x");
+mTimeSeries->sendData("TEST1", 2, 3, lAtt);
+```
+
 First parameter is tag name, the second is value, the third is quality and the third is custom attributes.
 There is more simple way to ingest data with only tag and value with default quality 3 and without attributes:
 
-    mTimeSeries->sendData("TEST1", "0");
+```cpp
+mTimeSeries->sendData("TEST1", "0");
+```
 
 **If device doesn't have connection to internet, all data is stored locally until connection will apear. After connection is available all local data is synced with server**
 
