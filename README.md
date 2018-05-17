@@ -44,11 +44,11 @@ lUser.setPassword("user password");
 ```
     
 now you can start using Uaa service:
-
-    QUaa *mUaa = new QUaa(lInfo);
-    connect(mUaa, SIGNAL(loginSucced(QUaa*)), this, SLOT(loginSucceed()));
-    mUaa->loginWithCredentials(lUser);
-
+```cpp
+QUaa *mUaa = new QUaa(lInfo);
+connect(mUaa, SIGNAL(loginSucced(QUaa*)), this, SLOT(loginSucceed()));
+mUaa->loginWithCredentials(lUser);
+```
 don't forget to initialize loginSucceed() slot;
 
 After login is succeed you are able to start using TimeSeries service provided by Prexid:
