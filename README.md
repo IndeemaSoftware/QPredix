@@ -90,4 +90,4 @@ In this section, we only consider bugs and ignore any questions relating to the 
 ## Terms
 **QPredix** is released for testing purposes only. We make no guarantees with respect to its function. By using this software you agree that Indeema is not liable for any damage to your system and data.
 
-To know more about us and our [IoT expertise](https://indeema.com/services/iot), visit our website http://indeema.com
+To know more about us and our [IoT expertise](https://indeema.com/services/iot), visit our website https://indeema.com
